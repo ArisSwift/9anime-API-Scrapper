@@ -1,0 +1,16 @@
+{
+  "name": "nineanime-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Read-only JSON API for 9anime's episode and stream endpoints",
+  "main": "src/index.mjs",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "check": "node --check src/index.mjs && node --check src/nineanime.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.162.0"
+  }
+}

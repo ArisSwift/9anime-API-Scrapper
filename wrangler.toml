@@ -1,0 +1,10 @@
+name = "nineanime-api"
+main = "src/index.mjs"
+compatibility_date = "2026-11-15"
+
+# The workers.dev address is the whole point: this API is called by XynAnime's
+# Worker, not by a browser, so it needs no custom domain.
+workers_dev = true
+
+[observability]
+enabled = true
