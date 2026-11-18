@@ -2,9 +2,13 @@ name = "nineanime-api"
 main = "src/index.mjs"
 compatibility_date = "2026-11-15"
 
-# The workers.dev address is the whole point: this API is called by XynAnime's
-# Worker, not by a browser, so it needs no custom domain.
+# Both addresses stay live: the custom domain is the pretty one, workers.dev is
+# what a `curl` in a hurry will reach for.
 workers_dev = true
+
+# Cloudflare makes the DNS record and the certificate itself; nothing to add in
+# the dashboard.
+routes = [{ pattern = "api.example.com", custom_domain = true }]
 
 [observability]
 enabled = true
