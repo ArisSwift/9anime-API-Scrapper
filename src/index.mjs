@@ -57,6 +57,10 @@ function pickEpisode(episodes, wanted) {
   throw new Failure(
     404,
     `no episode ${number}; ${episodes.length === 1 ? 'only episode' : 'episodes'} ${have.join(', ')} exist`,
+    // The caller can tell "wrong episode number" from "wrong show" by this:
+    // one means try again with another number, the other means give up on the
+    // title. Without it both look like a plain 404.
+    { available: have },
   )
 }
 
