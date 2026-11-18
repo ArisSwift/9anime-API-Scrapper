@@ -56,6 +56,16 @@ certificate for you either way.
 
 ## Who can call it
 
+If you are deploying this for one site and nothing else, the strongest answer is
+not in this file: publish it nowhere at all. Set `workers_dev = false`, keep
+`routes = []`, and let the site's Worker reach it over a service binding
+(`"services": [{ "binding": "ANIME_API", "service": "nineanime-api" }]` in that
+project's config). It then has no hostname on the internet to call, no DNS, and
+no CORS, and only that one Worker can ask it. That is how the copy this repo was
+written for runs.
+
+If you do publish it, read on.
+
 `ALLOWED_ORIGINS` in `wrangler.toml` is the list of sites allowed to call this
 from a browser. Put the full origin of your own site in it, scheme and all. A
 request from anywhere else gets a 403 with no CORS header, so another site
