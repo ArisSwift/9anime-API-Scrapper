@@ -3,3 +3,7 @@ node_modules/
 .dev.vars
 dist/
 *.log
+
+# The owner's config: same Worker, with the domain the published copy must not
+# name. Wrangler reads it through `npm run deploy`.
+wrangler.personal.toml

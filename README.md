@@ -48,8 +48,20 @@ curl -s "http://127.0.0.1:8787/resolve?show=<id>&ep=1"
 
 `npm run deploy` publishes it with Wrangler. You need a Cloudflare account of
 your own and nothing else. `workers_dev = true` in `wrangler.toml` gives you a
-`.workers.dev` address for free. Add a `routes` entry there if you want a custom
-domain; Cloudflare makes the DNS record and the certificate for you.
+`.workers.dev` address for free. If you want a custom domain, put the `routes`
+line in `wrangler.personal.toml` rather than `wrangler.toml`, which is where it
+would end up in the copy you publish. That file is git-ignored and
+`npm run deploy` picks it up on its own. Cloudflare makes the DNS record and the
+certificate for you either way.
+
+## Who can call it
+
+`ALLOWED_ORIGINS` in `wrangler.toml` is the list of sites allowed to call this
+from a browser. Put the full origin of your own site in it, scheme and all. A
+request from anywhere else gets a 403 with no CORS header, so another site
+cannot quietly use your deployment as its backend. A request with no `Origin`
+header, which is every `curl` and every server, still works. This stops other
+websites, not other people: a script can send any `Origin` it likes.
 
 Before you deploy, look at `BASE` at the top of `src/nineanime.mjs`. That is the
 site it reads. These mirrors move to a new domain every so often, and when this

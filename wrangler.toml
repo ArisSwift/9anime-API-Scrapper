@@ -6,9 +6,19 @@ compatibility_date = "2026-11-15"
 # what a `curl` in a hurry will reach for.
 workers_dev = true
 
-# Cloudflare makes the DNS record and the certificate itself; nothing to add in
-# the dashboard.
-routes = [{ pattern = "api.example.com", custom_domain = true }]
+# Put your own address here. Cloudflare makes the DNS record and the certificate
+# itself; nothing to add in the dashboard.
+#
+#   routes = [{ pattern = "api.example.com", custom_domain = true }]
+#
+# The owner of this copy keeps that line in `wrangler.personal.toml`, which is
+# git-ignored, so no one's domain ends up in the published file.
+
+[vars]
+# The origins allowed to call this from a browser, comma separated, full origins
+# with the scheme. Put your own site here: without it every request from
+# your page is refused with a 403. The two below are the local dev server.
+ALLOWED_ORIGINS = "http://localhost:5183,http://localhost:5184"
 
 [observability]
 enabled = true

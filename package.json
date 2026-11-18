@@ -7,8 +7,8 @@
   "main": "src/index.mjs",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
-    "check": "node --check src/index.mjs && node --check src/nineanime.mjs"
+    "deploy": "node scripts/deploy.mjs",
+    "check": "node --check src/index.mjs && node --check src/nineanime.mjs && node --check scripts/deploy.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.162.0"
